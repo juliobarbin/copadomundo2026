@@ -359,16 +359,40 @@ function renderRules() {
   const card = el('div', { className: 'card prose' });
   card.innerHTML = `
     <h2 class="section-title">📋 Como funciona</h2>
-    <ul>
-      <li>Entre com sua conta <b>Google</b> e dê seu palpite no placar de cada jogo.</li>
-      <li>Os palpites de um jogo fecham automaticamente no <b>horário do apito inicial</b>.</li>
-    </ul>
+    <p>Palpite no placar de <b>todos os jogos</b> da Copa, some pontos a cada rodada e dispute o topo do ranking com a galera. 🏆</p>
+
+    <h3>Para participar</h3>
+    <ol class="rule-steps">
+      <li>Entre com sua conta <b>Google</b> — leva segundos e não precisa criar senha.</li>
+      <li>Na aba <b>Grupos &amp; Palpites</b>, informe o placar que você acha que vai dar em cada jogo.</li>
+      <li>Pode <b>editar quantas vezes quiser</b> até o apito inicial daquele jogo.</li>
+      <li>Quando o resultado oficial é lançado, sua pontuação é calculada e o <b>ranking atualiza na hora</b>.</li>
+    </ol>
+
+    <div class="rule-note">⏰ <b>Fique de olho no horário:</b> os palpites de cada jogo <b>fecham automaticamente no apito inicial</b>. Começou o jogo, palpite trancado.</div>
+
     <h3>Pontuação</h3>
     <table class="rules-pts">
-      <tr><td><span class="pts pts--10">+10</span></td><td>Cravou o <b>placar exato</b> (ex.: palpitou 2×1 e foi 2×1)</td></tr>
-      <tr><td><span class="pts pts--5">+5</span></td><td>Acertou o <b>resultado</b> (vencedor ou empate), mas não o placar</td></tr>
-      <tr><td><span class="pts pts--0">+0</span></td><td>Errou o resultado</td></tr>
+      <tr><td><span class="pts pts--10">+10</span></td><td>Cravou o <b>placar exato</b> <span class="ex">— palpitou 2×1 e foi 2×1</span></td></tr>
+      <tr><td><span class="pts pts--5">+5</span></td><td>Acertou o <b>resultado</b> (vencedor ou empate), mas não o placar <span class="ex">— palpitou 2×1 e foi 3×0</span></td></tr>
+      <tr><td><span class="pts pts--0">+0</span></td><td>Errou o resultado <span class="ex">— ou esqueceu de palpitar o jogo</span></td></tr>
     </table>
+    <p class="muted">Vale para todas as fases — da estreia na fase de grupos até a grande final.</p>
+
+    <h3>Quem fica em 1º? (desempate)</h3>
+    <p>O ranking é ordenado assim:</p>
+    <ol class="rule-steps">
+      <li>Maior <b>pontuação total</b>.</li>
+      <li>Em caso de empate, quem tiver mais <b>placares exatos</b> (palpites de +10) leva a melhor.</li>
+    </ol>
+
+    <h3>Fair play</h3>
+    <ul>
+      <li><b>Uma conta por pessoa</b> — nada de contas extras pra encher de palpite. 😉</li>
+      <li>Seus palpites ficam <b>visíveis só para você</b> até o jogo começar.</li>
+      <li>Não palpitou um jogo? Ele conta como <b>+0</b> — então não vacile no calendário!</li>
+    </ul>
+
     <h3>Calendário</h3>
     <ul>
       <li><b>Fase de grupos:</b> 11 a 27 de junho de 2026</li>

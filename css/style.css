@@ -183,6 +183,12 @@ body {
 .prose li { margin: 5px 0; }
 .rules-pts { border-collapse: collapse; margin: 6px 0 4px; }
 .rules-pts td { padding: 7px 10px 7px 0; vertical-align: middle; color: #d6ddf5; }
+.rules-pts .ex { color: var(--muted); font-size: 13px; }
+.prose p { color: #d6ddf5; line-height: 1.55; margin: 0 0 8px; }
+.prose ol.rule-steps { margin: 0 0 8px 20px; color: #d6ddf5; }
+.prose ol.rule-steps li { margin: 6px 0; padding-left: 4px; }
+.rule-note { margin: 12px 0; padding: 12px 14px; border-radius: 12px; line-height: 1.5;
+  color: #ffe9b0; background: rgba(255, 204, 51, .1); border: 1px solid rgba(255, 204, 51, .28); }
 
 /* ---------- Admin ---------- */
 .admin-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
