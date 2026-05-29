@@ -16,11 +16,53 @@
     <div class="hero">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-pitch" aria-hidden="true"></div>
-      <div class="hero-trophy" aria-hidden="true">🏆</div>
+      <div class="hero-trophy" aria-hidden="true">
+        <svg viewBox="0 0 64 80" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="gtL" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff5d6"/>
+              <stop offset=".35" stop-color="#ffe08a"/>
+              <stop offset=".7" stop-color="#f5c542"/>
+              <stop offset="1" stop-color="#c8941b"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#gtL)">
+            <circle cx="32" cy="18" r="13"/>
+            <path d="M20 30 C20 46 28 50 30 58 L30 64 H34 L34 58 C36 50 44 46 44 30 C40 36 24 36 20 30 Z"/>
+            <path d="M19 72 L24 64 H40 L45 72 Z"/>
+            <rect x="15" y="72" width="34" height="6" rx="3"/>
+          </g>
+          <g fill="none" stroke="#9a6f12" stroke-width="1.4" opacity=".55">
+            <ellipse cx="32" cy="18" rx="6" ry="13"/>
+            <line x1="19" y1="18" x2="45" y2="18"/>
+          </g>
+        </svg>
+      </div>
       <div class="hero-inner">
         <div class="topbar">
           <div class="brand">
-            <span class="brand-logo">🏆</span>
+            <span class="brand-logo" aria-hidden="true">
+              <svg viewBox="0 0 64 80" role="img" aria-label="Troféu">
+                <defs>
+                  <linearGradient id="gtS" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#fff5d6"/>
+                    <stop offset=".35" stop-color="#ffe08a"/>
+                    <stop offset=".7" stop-color="#f5c542"/>
+                    <stop offset="1" stop-color="#c8941b"/>
+                  </linearGradient>
+                </defs>
+                <g fill="url(#gtS)">
+                  <circle cx="32" cy="18" r="13"/>
+                  <path d="M20 30 C20 46 28 50 30 58 L30 64 H34 L34 58 C36 50 44 46 44 30 C40 36 24 36 20 30 Z"/>
+                  <path d="M19 72 L24 64 H40 L45 72 Z"/>
+                  <rect x="15" y="72" width="34" height="6" rx="3"/>
+                </g>
+                <g fill="none" stroke="#9a6f12" stroke-width="1.4" opacity=".55">
+                  <ellipse cx="32" cy="18" rx="6" ry="13"/>
+                  <line x1="19" y1="18" x2="45" y2="18"/>
+                </g>
+              </svg>
+            </span>
             <div>
               <span class="brand-name" id="brand-name">Bolão da Copa 2026</span>
               <span class="brand-sub">USA · Canadá · México</span>
@@ -31,7 +73,12 @@
         <div class="hero-center">
           <span class="hero-kicker">11 jun — 19 jul · 48 seleções · 3 países</span>
           <h1 class="hero-title">Copa do Mundo <span class="hero-26">26</span></h1>
-          <p class="hero-tagline">Dê seu palpite, crave o placar e levante a taça do bolão. 🏆</p>
+          <p class="hero-tagline">Dê seu palpite, crave o placar e levante a taça do bolão.</p>
+          <div class="hero-scoring" aria-hidden="true">
+            <span class="hp hp--10">+10 placar exato</span>
+            <span class="hp hp--5">+5 resultado certo</span>
+            <span class="hp hp--0">+0 errou</span>
+          </div>
         </div>
       </div>
     </div>

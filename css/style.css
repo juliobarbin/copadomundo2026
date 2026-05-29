@@ -61,19 +61,21 @@ body {
 }
 /* troféu gigante de marca d'água */
 .hero-trophy {
-  position: absolute; right: -10px; top: 50%; transform: translateY(-50%) rotate(8deg);
-  font-size: 240px; line-height: 1; pointer-events: none; user-select: none;
-  opacity: .08; filter: blur(.5px) drop-shadow(0 0 40px rgba(245,197,66,.5));
+  position: absolute; right: -6px; top: 50%; transform: translateY(-50%) rotate(8deg);
+  pointer-events: none; user-select: none;
+  opacity: .12; filter: drop-shadow(0 0 40px rgba(245,197,66,.5));
 }
+.hero-trophy svg { width: 300px; height: auto; display: block; }
 
 .hero-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 16px 20px 0; }
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-logo {
-  font-size: 30px; line-height: 1;
-  filter: drop-shadow(0 4px 14px rgba(245, 197, 66, 0.6));
+  display: inline-flex; line-height: 1;
+  filter: drop-shadow(0 4px 14px rgba(245, 197, 66, 0.55));
 }
+.brand-logo svg { width: 28px; height: 35px; display: block; }
 .brand-name {
   display: block; font-family: 'Sora', sans-serif; font-weight: 800;
   font-size: 19px; letter-spacing: -0.3px;
@@ -96,16 +98,37 @@ body {
   text-shadow: 0 6px 40px rgba(0, 0, 0, .5);
 }
 .hero-26 {
-  position: relative;
-  background: linear-gradient(180deg, #fff5d6 0%, var(--gold-2) 30%, var(--gold) 55%, var(--gold-d) 100%);
+  position: relative; padding: 0 .06em;
+  background:
+    linear-gradient(115deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%) 0 0 / 250% 100% no-repeat,
+    linear-gradient(180deg, #fff5d6 0%, var(--gold-2) 30%, var(--gold) 55%, var(--gold-d) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 4px 22px rgba(245, 197, 66, .5));
+  animation: shine26 4.5s ease-in-out infinite;
 }
+@keyframes shine26 {
+  0%, 100% { background-position: 220% 0, 0 0; }
+  45%, 55% { background-position: -40% 0, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-26 { animation: none; } }
+
 .hero-tagline { margin: 16px auto 0; max-width: 560px; color: #cfd4e6; font-size: clamp(15px, 2.4vw, 18px); }
 
+/* legenda de pontuação no hero */
+.hero-scoring { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
+.hp {
+  font-weight: 700; font-size: 13px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid transparent; backdrop-filter: blur(4px);
+}
+.hp--10 { color: #6dffb0; background: rgba(0, 196, 106, .14); border-color: rgba(0, 196, 106, .35); }
+.hp--5  { color: #ffe9b0; background: rgba(245, 197, 66, .12); border-color: rgba(245, 197, 66, .35); }
+.hp--0  { color: #ffb3b5; background: rgba(255, 90, 95, .12); border-color: rgba(255, 90, 95, .32); }
+
 @media (max-width: 560px) {
-  .hero-trophy { font-size: 150px; right: -30px; opacity: .06; }
+  .hero-trophy { opacity: .08; }
+  .hero-trophy svg { width: 190px; }
   .hero-center { padding: 24px 6px 32px; }
+  .hp { font-size: 12px; padding: 5px 11px; }
 }
 
 .auth-box { display: flex; align-items: center; gap: 10px; }
