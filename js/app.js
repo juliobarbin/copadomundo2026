@@ -58,6 +58,50 @@ async function init() {
   await loadMatches();
   render();
   wireNav();
+  setupShare();
+  startCountdown();
+}
+
+// ---------- contador regressivo do próximo jogo ----------
+let countdownTimer = null;
+function startCountdown() {
+  const box = $('#hero-countdown');
+  if (!box) return;
+  if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+
+  const now = Date.now();
+  const next = state.matches
+    .filter(m => m.match_date && m.status !== 'finished' && new Date(m.match_date).getTime() > now)
+    .sort((a, b) => new Date(a.match_date) - new Date(b.match_date))[0];
+
+  if (!next) { box.hidden = true; return; }
+  box.hidden = false;
+
+  const pad = n => String(n).padStart(2, '0');
+  const tick = () => {
+    const diff = new Date(next.match_date).getTime() - Date.now();
+    if (diff <= 0) { clearInterval(countdownTimer); countdownTimer = null; startCountdown(); return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const mn = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const clock = (d > 0 ? `${d}d ` : '') + `${pad(h)}:${pad(mn)}:${pad(s)}`;
+    box.replaceChildren(
+      el('span', { className: 'cd-label' }, '⏱️ Próximo jogo'),
+      el('span', { className: 'cd-match' }, `${next.home_team} × ${next.away_team}`),
+      el('span', { className: 'cd-clock' }, clock));
+  };
+  tick();
+  countdownTimer = setInterval(tick, 1000);
+}
+
+// ---------- compartilhar no WhatsApp ----------
+function setupShare() {
+  const a = $('#share-wa');
+  if (!a) return;
+  const url = location.origin + location.pathname;
+  const text = `🏆 Bora pro Bolão da Copa 2026! Palpite nos jogos e dispute o ranking com a gente: ${url}`;
+  a.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
 async function afterAuth() {
@@ -237,11 +281,18 @@ function renderStandings(list) {
 
 function renderMatch(m) {
   const row = el('div', { className: 'match' });
-  const locked = !state.session || (m.match_date && new Date(m.match_date) <= new Date());
+  const started = m.match_date && new Date(m.match_date) <= new Date();
+  const locked = !state.session || started;
   const finished = m.status === 'finished';
   const pred = state.preds.get(m.id);
 
-  row.append(el('div', { className: 'match-date' }, `${fmtDate(m.match_date)} · ${m.matchday}ª rod.`));
+  let badge = null;
+  if (finished) badge = el('span', { className: 'mbadge mbadge--done' }, 'ENCERRADO');
+  else if (started) badge = el('span', { className: 'mbadge mbadge--live' }, '● AO VIVO');
+
+  const dateRow = el('div', { className: 'match-date' }, `${fmtDate(m.match_date)} · ${m.matchday}ª rod.`);
+  if (badge) dateRow.append(' ', badge);
+  row.append(dateRow);
 
   const teamsRow = el('div', { className: 'match-teams' });
 
@@ -332,6 +383,24 @@ async function renderRanking(main) {
     card.append(el('p', { className: 'muted' }, 'Ninguém pontuou ainda. Faça seus palpites!'));
     main.append(card); return;
   }
+
+  // banner "minha posição"
+  if (state.session) {
+    const idx = data.findIndex(r => r.user_id === state.session.user.id);
+    if (idx >= 0) {
+      const r = data[idx];
+      card.append(el('div', { className: 'my-rank' },
+        el('span', { className: 'my-rank-pos' }, medal(idx)),
+        el('div', { className: 'my-rank-info' },
+          el('span', { className: 'my-rank-txt' }, `Você está em ${idx + 1}º lugar`),
+          el('span', { className: 'my-rank-sub' }, `de ${data.length} participantes`)),
+        el('span', { className: 'my-rank-stat' }, `${r.total_points} pts · ${r.exact_hits} cravadas`)));
+    } else {
+      card.append(el('div', { className: 'my-rank my-rank--empty' },
+        el('span', { className: 'my-rank-txt' }, 'Você ainda não pontuou — faça seus palpites! 🎯')));
+    }
+  }
+
   const tbl = el('table', { className: 'ranking' });
   tbl.append(el('thead', {}, el('tr', {},
     el('th', {}, '#'), el('th', { className: 'left' }, 'Participante'),
@@ -437,6 +506,7 @@ async function saveResult(m, inH, inA, st, btn) {
   st.textContent = '✓ salvo'; st.className = 'save-status ok';
   renderHeader();
   render();
+  startCountdown();
 }
 
 // ---------- util ----------
