@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolão da Copa 2026</title>
+  <meta name="description" content="Bolão da Copa do Mundo 2026 — palpite, pontue e suba no ranking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-logo">🏆</span>
+        <div>
+          <span class="brand-name" id="brand-name">Bolão da Copa 2026</span>
+          <span class="brand-sub">USA · Canadá · México</span>
+        </div>
+      </div>
+      <div id="auth-box" class="auth-box"></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-inner">
+        <button class="nav-tab is-active" data-tab="jogos">⚽ Jogos &amp; Palpites</button>
+        <button class="nav-tab" data-tab="ranking">🏆 Ranking</button>
+        <button class="nav-tab" data-tab="regras">📋 Regras</button>
+        <button class="nav-tab" data-tab="admin" id="tab-admin" hidden>⚙️ Admin</button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="config-warning" class="config-warning" hidden>
+    <strong>⚠️ Configuração pendente.</strong>
+    Edite <code>js/config.js</code> com a URL e a anon key do seu projeto Supabase. Veja o <code>README.md</code>.
+  </div>
+
+  <main id="content" class="content"></main>
+
+  <footer class="site-footer">
+    <p>Feito com ⚽ para a Copa 2026 · Dados dos grupos conforme sorteio oficial.</p>
+  </footer>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
